@@ -1,0 +1,48 @@
+{
+  "name": "cordova-plugin-mcc-mlkit-barcode-scanner",
+  "version": "4.1.1",
+  "description": "Google MLKit Vision Barcode Scanner Plugin with 16 KB page size support",
+  "cordova": {
+    "id": "cordova-plugin-mcc-mlkit-barcode-scanner",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "mlkit",
+    "barcode",
+    "scanner"
+  ],
+  "author": "MCC",
+  "license": "MIT",
+  "main": "www/BarcodeScanner.contract.js",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run transpile",
+    "clean": "node -e \"const fs=require('fs'),path=require('path'),p='www';fs.mkdirSync(p,{recursive:true});for(const f of fs.readdirSync(p)){fs.rmSync(path.join(p,f),{recursive:true,force:true});}\"",
+    "lint": "eslint . --ext .js,.ts --cache && tsc -p tsconfig.lint.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "npx --yes rollup@2 --config rollup.config.mjs --silent",
+    "prepublishOnly": "npm install --production=false && npm run build"
+  },
+  "files": [
+    "/src/",
+    "/www/**/*.{js,js.map,d.ts}",
+    "/plugin.xml"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "20.0.0",
+    "@rollup/plugin-node-resolve": "13.0.4",
+    "@types/cordova": "0.0.34",
+    "@types/node": "16.7.1",
+    "rollup": "2.56.3",
+    "rollup-plugin-typescript2": "^0.37.0",
+    "tslib": "^2.8.1"
+  }
+}
